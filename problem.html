@@ -1,203 +1,215 @@
-<div class="_16yfq _39fEV"><h2 id="solution">Solution</h2>
-  <hr>
-  <h4 id="approach-1-sort-an-almost-sorted-array-where-two-elements-are-swapped">Approach 1: Sort an Almost Sorted Array Where Two Elements Are Swapped</h4>
-  <p><strong>Intuition</strong></p>
-  <p>Let's start from straightforward but not optimal solution<br>
-  with a linear time and space complexity.<br>
-  This solution serves to identify and discuss all subproblems.</p>
-  <p>It's known that <a href="https://leetcode.com/articles/delete-node-in-a-bst/" target="_blank">inorder traversal of BST is an array sorted in<br>
-  the ascending order</a>.<br>
-  Here is how one could compute an inorder traversal</p>
-  <iframe src="https://leetcode.com/playground/WiHt8Ahk/shared" width="100%" height="157" name="user-content-WiHt8Ahk" allowfullscreen="" translate="no"></iframe>
-  <p>Here two nodes are swapped, and hence inorder traversal is<br>
-  an almost sorted array where only two elements are swapped.<br>
-  To identify two swapped elements in a sorted array is<br>
-  a classical problem that could be solved in linear time.<br>
-  Here is a solution code</p>
-  <iframe src="https://leetcode.com/playground/PX8K9NYA/shared" width="100%" height="378" name="user-content-PX8K9NYA" allowfullscreen="" translate="no"></iframe>
-  <p>When swapped nodes are known, one could traverse the tree<br>
-  again and swap their values.</p>
-  <img src="../Figures/99/iinorde.png" alt="" width="700">
-  <p><strong>Algorithm</strong></p>
-  <p>Here is the algorithm:</p>
-  <ol>
-  <li>
-  <p>Construct inorder traversal of the tree.<br>
-  It should be an almost sorted list where only two elements are swapped.</p>
-  </li>
-  <li>
-  <p>Identify two swapped elements x and y in an almost sorted array<br>
-  in linear time.</p>
-  </li>
-  <li>
-  <p>Traverse the tree again. Change value x to y and value y to x.</p>
-  </li>
-  </ol>
-  <p><strong>Implementation</strong></p>
-  <iframe src="https://leetcode.com/playground/8GusnM3B/shared" width="100%" height="500" name="user-content-8GusnM3B" allowfullscreen="" translate="no"></iframe>
-  <p><strong>Complexity Analysis</strong></p>
-  <ul>
-  <li>
-  <p>Time complexity : <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span>. To compute inorder traversal takes<br>
-  <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> time, to identify and to swap back swapped nodes <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> in the worst case.</p>
-  </li>
-  <li>
-  <p>Space complexity : <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> since we keep inorder traversal <code>nums</code> with N elements.</p>
-  <br>
-  </li>
-  </ul>
-  <br>
-  <hr>
-  <h4 id="what-is-coming-next">What Is Coming Next</h4>
-  <p>In approach 1 we discussed three easy subproblems of this hard problem:</p>
-  <ol>
-  <li>
-  <p>Construct inorder traversal.</p>
-  </li>
-  <li>
-  <p>Find swapped elements in<br>
-  an almost sorted array where only two elements are swapped.</p>
-  </li>
-  <li>
-  <p>Swap values of two nodes.</p>
-  </li>
-  </ol>
-  <p>Now we will discuss three more approaches, and basically they are<br>
-  all the same :</p>
-  <ul>
-  <li>
-  <p>Merge steps 1 and 2, i.e. identify swapped nodes during the<br>
-  inorder traversal.</p>
-  </li>
-  <li>
-  <p>Swap node values.</p>
-  </li>
-  </ul>
-  <p>The difference in-between the following approaches is in a chosen<br>
-  method to implement inorder traversal :</p>
-  <ul>
-  <li>
-  <p>Approach 2 : Iterative.</p>
-  </li>
-  <li>
-  <p>Approach 3 : Recursive.</p>
-  </li>
-  <li>
-  <p>Approach 4 : Morris.</p>
-  </li>
-  </ul>
-  <img src="../Figures/99/mmorris.png" alt="" width="700">
-  <p>Iterative and recursive approaches here do less than <em>one pass</em>,<br>
-  and they both need up to <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(H)\mathcal{O}(H)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.08125em;">H</span><span class="mclose">)</span></span></span></span></span> space to keep stack,<br>
-  where H is a tree height.</p>
-  <p>Morris approach is <em>two pass</em> approach, but it's a constant-space one.<br>
-  <br><br>
-  <br></p>
-  <hr>
-  <h4 id="approach-2-iterative-inorder-traversal">Approach 2: Iterative Inorder Traversal</h4>
-  <p><strong>Intuition</strong></p>
-  <p>Here we construct inorder traversal by iterations<br>
-  and identify swapped nodes at the same time, in one pass.</p>
-  <blockquote>
-  <p>Iterative inorder traversal is simple:<br>
-  go left as far as you can, then one step right. Repeat till<br>
-  the end of nodes in the tree.</p>
-  </blockquote>
-  <p>To identify swapped nodes,<br>
-  track the last node <code>pred</code> in the inorder traversal (i.e. the<br>
-  <em>predecessor</em> of the current node)<br>
-  and compare it with current node value.<br>
-  If the current node value is smaller than its predecessor <code>pred</code> value,<br>
-  the swapped node is here.</p>
-  <p>There are only two swapped nodes here, and hence one could break after<br>
-  having the second node identified.</p>
-  <p>Doing so, one could get directly nodes (and not only their values),<br>
-  and hence swap node values in <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(1)\mathcal{O}(1)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span> time, drastically<br>
-  reducing the time needed for step 3.</p>
-  <p><div class="relative mx-auto mb-6 flex flex-col overflow-hidden rounded-lg border-[1px] border-label-1" style="max-width: 1000px;"><div class="rounded-lg" style="max-height: 310px;"><img alt="Current" class="object-fit-contain !mb-0 max-h-full max-w-full" src="blob:https://leetcode.com/cea85f37-4ec6-4ffe-a60f-34c86e327cc9"></div><div class="absolute top-[50%] left-[50%] flex h-12 w-12 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-black/30"><div class="flex h-4 w-4 cursor-pointer items-center justify-center text-[35px]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="h-full w-full text-white"><path fill-rule="evenodd" d="M18.97 12.871l-12.96 7.29a1 1 0 01-1.49-.87V4.71a1 1 0 011.49-.872l12.96 7.29a1 1 0 010 1.743z" clip-rule="evenodd"></path></svg></div></div><div class="relative flex h-8 select-none items-center justify-around bg-black"><div class="flex items-center space-x-7"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M16.091 4.929l-7.057 7.078 7.057 7.064a1 1 0 01-1.414 1.414l-7.764-7.77a1 1 0 010-1.415l7.764-7.785a1 1 0 111.415 1.414z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M18.97 12.871l-12.96 7.29a1 1 0 01-1.49-.87V4.71a1 1 0 011.49-.872l12.96 7.29a1 1 0 010 1.743z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M7.913 19.071l7.057-7.078-7.057-7.064a1 1 0 011.414-1.414l7.764 7.77a1 1 0 010 1.415l-7.764 7.785a1 1 0 01-1.414-1.414z" clip-rule="evenodd"></path></svg></div><div class="absolute right-0 mr-5 text-xs font-medium text-white">1 / 9</div></div></div></p>
-  <p><strong>Implementation</strong></p>
-  <p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html" target="_blank">Don't use Stack in Java, use ArrayDeque instead</a>.</p>
-  <iframe src="https://leetcode.com/playground/HGoGLabA/shared" width="100%" height="500" name="user-content-HGoGLabA" allowfullscreen="" translate="no"></iframe>
-  <p><strong>Complexity Analysis</strong></p>
-  <ul>
-  <li>
-  <p>Time complexity: <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> in the worst case<br>
-  when one of the swapped nodes is a rightmost leaf.</p>
-  </li>
-  <li>
-  <p>Space complexity : up to <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> to keep the stack<br>
-  in the worst case when the tree is completely lean.</p>
-  <br>
-  </li>
-  </ul>
-  <br>
-  <hr>
-  <h4 id="approach-3-recursive-inorder-traversal">Approach 3: Recursive Inorder Traversal</h4>
-  <p>Iterative approach 2 could be converted into recursive one.</p>
-  <p>Recursive inorder traversal is extremely simple:<br>
-  follow <code>Left-&gt;Node-&gt;Right</code> direction, i.e. do the recursive call<br>
-  for the <em>left</em> child, then do all the business with the node<br>
-  (= if the node is the swapped one or not), and<br>
-  then do the recursive call for the <em>right</em> child.</p>
-  <p>On the following figure the nodes are numerated in the order you visit them,<br>
-  please follow <code>1-2-3-4-5</code> to compare different DFS strategies.</p>
-  <img src="../Figures/99/ddfs.png" alt="" width="700">
-  <p><strong>Implementation</strong></p>
-  <iframe src="https://leetcode.com/playground/NEXWtksU/shared" width="100%" height="497" name="user-content-NEXWtksU" allowfullscreen="" translate="no"></iframe>
-  <p><strong>Complexity Analysis</strong></p>
-  <ul>
-  <li>
-  <p>Time complexity: <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> in the worst case<br>
-  when one of the swapped nodes is a rightmost leaf.</p>
-  </li>
-  <li>
-  <p>Space complexity : up to <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> to keep the stack<br>
-  in the worst case when the tree is completely lean.</p>
-  <br>
-  </li>
-  </ul>
-  <br>
-  <hr>
-  <h4 id="approach-4-morris-inorder-traversal">Approach 4: Morris Inorder Traversal</h4>
-  <p>We discussed already iterative and recursive inorder traversals,<br>
-  which both have great time complexity though use up to<br>
-  <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> to keep stack.<br>
-  We could trade in performance to save space.</p>
-  <p>The idea of Morris inorder traversal is simple:<br>
-  to use no space but to traverse the tree.</p>
-  <blockquote>
-  <p>How that could be even possible? At each node one has to decide where to go:<br>
-  left or right, traverse left subtree or traverse right subtree.<br>
-  How one could know that the left subtree is already done if no<br>
-  additional memory is allowed?</p>
-  </blockquote>
-  <p>The idea of <a href="https://www.sciencedirect.com/science/article/pii/0020019079900681" target="_blank">Morris</a><br>
-  algorithm is to set the <em>temporary link</em> between the node and its<br>
-  <a href="https://leetcode.com/articles/delete-node-in-a-bst/" target="_blank">predecessor</a>:<br>
-  <code>predecessor.right = root</code>.<br>
-  So one starts from the node, computes its predecessor and<br>
-  verifies if the link is present.</p>
-  <ul>
-  <li>
-  <p>There is no link? Set it and go to the left subtree.</p>
-  </li>
-  <li>
-  <p>There is a link? Break it and go to the right subtree.</p>
-  </li>
-  </ul>
-  <p>There is one small issue to deal with : what if there is no<br>
-  left child, i.e. there is no left subtree?<br>
-  Then go straightforward to the right subtree.</p>
-  <p><div class="relative mx-auto mb-6 flex flex-col overflow-hidden rounded-lg border-[1px] border-label-1" style="max-width: 1000px;"><div class="rounded-lg" style="max-height: 377px;"><img alt="Current" class="object-fit-contain !mb-0 max-h-full max-w-full" src="blob:https://leetcode.com/ce7c5ebf-8a90-4ee4-ae05-9967aea7cb37"></div><div class="absolute top-[50%] left-[50%] flex h-12 w-12 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-black/30"><div class="flex h-4 w-4 cursor-pointer items-center justify-center text-[35px]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="h-full w-full text-white"><path fill-rule="evenodd" d="M18.97 12.871l-12.96 7.29a1 1 0 01-1.49-.87V4.71a1 1 0 011.49-.872l12.96 7.29a1 1 0 010 1.743z" clip-rule="evenodd"></path></svg></div></div><div class="relative flex h-8 select-none items-center justify-around bg-black"><div class="flex items-center space-x-7"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M16.091 4.929l-7.057 7.078 7.057 7.064a1 1 0 01-1.414 1.414l-7.764-7.77a1 1 0 010-1.415l7.764-7.785a1 1 0 111.415 1.414z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M18.97 12.871l-12.96 7.29a1 1 0 01-1.49-.87V4.71a1 1 0 011.49-.872l12.96 7.29a1 1 0 010 1.743z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M7.913 19.071l7.057-7.078-7.057-7.064a1 1 0 011.414-1.414l7.764 7.77a1 1 0 010 1.415l-7.764 7.785a1 1 0 01-1.414-1.414z" clip-rule="evenodd"></path></svg></div><div class="absolute right-0 mr-5 text-xs font-medium text-white">1 / 11</div></div></div></p>
-  <p><strong>Implementation</strong></p>
-  <iframe src="https://leetcode.com/playground/7GcrfYvi/shared" width="100%" height="500" name="user-content-7GcrfYvi" allowfullscreen="" translate="no"></iframe>
-  <p><strong>Complexity Analysis</strong></p>
-  <ul>
-  <li>
-  <p>Time complexity : <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> since we visit each node up to<br>
-  two times.</p>
-  </li>
-  <li>
-  <p>Space complexity : <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(1)\mathcal{O}(1)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span>.</p>
-  </li>
-  </ul></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="_16yfq _39fEV"><h2 id="solution">Solution</h2>
+    <hr>
+    <h4 id="approach-1-sort-an-almost-sorted-array-where-two-elements-are-swapped">Approach 1: Sort an Almost Sorted Array Where Two Elements Are Swapped</h4>
+    <p><strong>Intuition</strong></p>
+    <p>Let's start from straightforward but not optimal solution<br>
+    with a linear time and space complexity.<br>
+    This solution serves to identify and discuss all subproblems.</p>
+    <p>It's known that <a href="https://leetcode.com/articles/delete-node-in-a-bst/" target="_blank">inorder traversal of BST is an array sorted in<br>
+    the ascending order</a>.<br>
+    Here is how one could compute an inorder traversal</p>
+    <iframe src="https://leetcode.com/playground/WiHt8Ahk/shared" width="100%" height="157" name="user-content-WiHt8Ahk" allowfullscreen="" translate="no"></iframe>
+    <p>Here two nodes are swapped, and hence inorder traversal is<br>
+    an almost sorted array where only two elements are swapped.<br>
+    To identify two swapped elements in a sorted array is<br>
+    a classical problem that could be solved in linear time.<br>
+    Here is a solution code</p>
+    <iframe src="https://leetcode.com/playground/PX8K9NYA/shared" width="100%" height="378" name="user-content-PX8K9NYA" allowfullscreen="" translate="no"></iframe>
+    <p>When swapped nodes are known, one could traverse the tree<br>
+    again and swap their values.</p>
+    <img src="../Figures/99/iinorde.png" alt="" width="700">
+    <p><strong>Algorithm</strong></p>
+    <p>Here is the algorithm:</p>
+    <ol>
+    <li>
+    <p>Construct inorder traversal of the tree.<br>
+    It should be an almost sorted list where only two elements are swapped.</p>
+    </li>
+    <li>
+    <p>Identify two swapped elements x and y in an almost sorted array<br>
+    in linear time.</p>
+    </li>
+    <li>
+    <p>Traverse the tree again. Change value x to y and value y to x.</p>
+    </li>
+    </ol>
+    <p><strong>Implementation</strong></p>
+    <iframe src="https://leetcode.com/playground/8GusnM3B/shared" width="100%" height="500" name="user-content-8GusnM3B" allowfullscreen="" translate="no"></iframe>
+    <p><strong>Complexity Analysis</strong></p>
+    <ul>
+    <li>
+    <p>Time complexity : <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span>. To compute inorder traversal takes<br>
+    <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> time, to identify and to swap back swapped nodes <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> in the worst case.</p>
+    </li>
+    <li>
+    <p>Space complexity : <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> since we keep inorder traversal <code>nums</code> with N elements.</p>
+    <br>
+    </li>
+    </ul>
+    <br>
+    <hr>
+    <h4 id="what-is-coming-next">What Is Coming Next</h4>
+    <p>In approach 1 we discussed three easy subproblems of this hard problem:</p>
+    <ol>
+    <li>
+    <p>Construct inorder traversal.</p>
+    </li>
+    <li>
+    <p>Find swapped elements in<br>
+    an almost sorted array where only two elements are swapped.</p>
+    </li>
+    <li>
+    <p>Swap values of two nodes.</p>
+    </li>
+    </ol>
+    <p>Now we will discuss three more approaches, and basically they are<br>
+    all the same :</p>
+    <ul>
+    <li>
+    <p>Merge steps 1 and 2, i.e. identify swapped nodes during the<br>
+    inorder traversal.</p>
+    </li>
+    <li>
+    <p>Swap node values.</p>
+    </li>
+    </ul>
+    <p>The difference in-between the following approaches is in a chosen<br>
+    method to implement inorder traversal :</p>
+    <ul>
+    <li>
+    <p>Approach 2 : Iterative.</p>
+    </li>
+    <li>
+    <p>Approach 3 : Recursive.</p>
+    </li>
+    <li>
+    <p>Approach 4 : Morris.</p>
+    </li>
+    </ul>
+    <img src="../Figures/99/mmorris.png" alt="" width="700">
+    <p>Iterative and recursive approaches here do less than <em>one pass</em>,<br>
+    and they both need up to <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(H)\mathcal{O}(H)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.08125em;">H</span><span class="mclose">)</span></span></span></span></span> space to keep stack,<br>
+    where H is a tree height.</p>
+    <p>Morris approach is <em>two pass</em> approach, but it's a constant-space one.<br>
+    <br><br>
+    <br></p>
+    <hr>
+    <h4 id="approach-2-iterative-inorder-traversal">Approach 2: Iterative Inorder Traversal</h4>
+    <p><strong>Intuition</strong></p>
+    <p>Here we construct inorder traversal by iterations<br>
+    and identify swapped nodes at the same time, in one pass.</p>
+    <blockquote>
+    <p>Iterative inorder traversal is simple:<br>
+    go left as far as you can, then one step right. Repeat till<br>
+    the end of nodes in the tree.</p>
+    </blockquote>
+    <p>To identify swapped nodes,<br>
+    track the last node <code>pred</code> in the inorder traversal (i.e. the<br>
+    <em>predecessor</em> of the current node)<br>
+    and compare it with current node value.<br>
+    If the current node value is smaller than its predecessor <code>pred</code> value,<br>
+    the swapped node is here.</p>
+    <p>There are only two swapped nodes here, and hence one could break after<br>
+    having the second node identified.</p>
+    <p>Doing so, one could get directly nodes (and not only their values),<br>
+    and hence swap node values in <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(1)\mathcal{O}(1)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span> time, drastically<br>
+    reducing the time needed for step 3.</p>
+    <p><div class="relative mx-auto mb-6 flex flex-col overflow-hidden rounded-lg border-[1px] border-label-1" style="max-width: 1000px;"><div class="rounded-lg" style="max-height: 310px;"><img alt="Current" class="object-fit-contain !mb-0 max-h-full max-w-full" src="blob:https://leetcode.com/cea85f37-4ec6-4ffe-a60f-34c86e327cc9"></div><div class="absolute top-[50%] left-[50%] flex h-12 w-12 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-black/30"><div class="flex h-4 w-4 cursor-pointer items-center justify-center text-[35px]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="h-full w-full text-white"><path fill-rule="evenodd" d="M18.97 12.871l-12.96 7.29a1 1 0 01-1.49-.87V4.71a1 1 0 011.49-.872l12.96 7.29a1 1 0 010 1.743z" clip-rule="evenodd"></path></svg></div></div><div class="relative flex h-8 select-none items-center justify-around bg-black"><div class="flex items-center space-x-7"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M16.091 4.929l-7.057 7.078 7.057 7.064a1 1 0 01-1.414 1.414l-7.764-7.77a1 1 0 010-1.415l7.764-7.785a1 1 0 111.415 1.414z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M18.97 12.871l-12.96 7.29a1 1 0 01-1.49-.87V4.71a1 1 0 011.49-.872l12.96 7.29a1 1 0 010 1.743z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M7.913 19.071l7.057-7.078-7.057-7.064a1 1 0 011.414-1.414l7.764 7.77a1 1 0 010 1.415l-7.764 7.785a1 1 0 01-1.414-1.414z" clip-rule="evenodd"></path></svg></div><div class="absolute right-0 mr-5 text-xs font-medium text-white">1 / 9</div></div></div></p>
+    <p><strong>Implementation</strong></p>
+    <p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html" target="_blank">Don't use Stack in Java, use ArrayDeque instead</a>.</p>
+    <iframe src="https://leetcode.com/playground/HGoGLabA/shared" width="100%" height="500" name="user-content-HGoGLabA" allowfullscreen="" translate="no"></iframe>
+    <p><strong>Complexity Analysis</strong></p>
+    <ul>
+    <li>
+    <p>Time complexity: <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> in the worst case<br>
+    when one of the swapped nodes is a rightmost leaf.</p>
+    </li>
+    <li>
+    <p>Space complexity : up to <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> to keep the stack<br>
+    in the worst case when the tree is completely lean.</p>
+    <br>
+    </li>
+    </ul>
+    <br>
+    <hr>
+    <h4 id="approach-3-recursive-inorder-traversal">Approach 3: Recursive Inorder Traversal</h4>
+    <p>Iterative approach 2 could be converted into recursive one.</p>
+    <p>Recursive inorder traversal is extremely simple:<br>
+    follow <code>Left-&gt;Node-&gt;Right</code> direction, i.e. do the recursive call<br>
+    for the <em>left</em> child, then do all the business with the node<br>
+    (= if the node is the swapped one or not), and<br>
+    then do the recursive call for the <em>right</em> child.</p>
+    <p>On the following figure the nodes are numerated in the order you visit them,<br>
+    please follow <code>1-2-3-4-5</code> to compare different DFS strategies.</p>
+    <img src="../Figures/99/ddfs.png" alt="" width="700">
+    <p><strong>Implementation</strong></p>
+    <iframe src="https://leetcode.com/playground/NEXWtksU/shared" width="100%" height="497" name="user-content-NEXWtksU" allowfullscreen="" translate="no"></iframe>
+    <p><strong>Complexity Analysis</strong></p>
+    <ul>
+    <li>
+    <p>Time complexity: <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> in the worst case<br>
+    when one of the swapped nodes is a rightmost leaf.</p>
+    </li>
+    <li>
+    <p>Space complexity : up to <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> to keep the stack<br>
+    in the worst case when the tree is completely lean.</p>
+    <br>
+    </li>
+    </ul>
+    <br>
+    <hr>
+    <h4 id="approach-4-morris-inorder-traversal">Approach 4: Morris Inorder Traversal</h4>
+    <p>We discussed already iterative and recursive inorder traversals,<br>
+    which both have great time complexity though use up to<br>
+    <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> to keep stack.<br>
+    We could trade in performance to save space.</p>
+    <p>The idea of Morris inorder traversal is simple:<br>
+    to use no space but to traverse the tree.</p>
+    <blockquote>
+    <p>How that could be even possible? At each node one has to decide where to go:<br>
+    left or right, traverse left subtree or traverse right subtree.<br>
+    How one could know that the left subtree is already done if no<br>
+    additional memory is allowed?</p>
+    </blockquote>
+    <p>The idea of <a href="https://www.sciencedirect.com/science/article/pii/0020019079900681" target="_blank">Morris</a><br>
+    algorithm is to set the <em>temporary link</em> between the node and its<br>
+    <a href="https://leetcode.com/articles/delete-node-in-a-bst/" target="_blank">predecessor</a>:<br>
+    <code>predecessor.right = root</code>.<br>
+    So one starts from the node, computes its predecessor and<br>
+    verifies if the link is present.</p>
+    <ul>
+    <li>
+    <p>There is no link? Set it and go to the left subtree.</p>
+    </li>
+    <li>
+    <p>There is a link? Break it and go to the right subtree.</p>
+    </li>
+    </ul>
+    <p>There is one small issue to deal with : what if there is no<br>
+    left child, i.e. there is no left subtree?<br>
+    Then go straightforward to the right subtree.</p>
+    <p><div class="relative mx-auto mb-6 flex flex-col overflow-hidden rounded-lg border-[1px] border-label-1" style="max-width: 1000px;"><div class="rounded-lg" style="max-height: 377px;"><img alt="Current" class="object-fit-contain !mb-0 max-h-full max-w-full" src="blob:https://leetcode.com/ce7c5ebf-8a90-4ee4-ae05-9967aea7cb37"></div><div class="absolute top-[50%] left-[50%] flex h-12 w-12 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-black/30"><div class="flex h-4 w-4 cursor-pointer items-center justify-center text-[35px]"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="h-full w-full text-white"><path fill-rule="evenodd" d="M18.97 12.871l-12.96 7.29a1 1 0 01-1.49-.87V4.71a1 1 0 011.49-.872l12.96 7.29a1 1 0 010 1.743z" clip-rule="evenodd"></path></svg></div></div><div class="relative flex h-8 select-none items-center justify-around bg-black"><div class="flex items-center space-x-7"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M16.091 4.929l-7.057 7.078 7.057 7.064a1 1 0 01-1.414 1.414l-7.764-7.77a1 1 0 010-1.415l7.764-7.785a1 1 0 111.415 1.414z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M18.97 12.871l-12.96 7.29a1 1 0 01-1.49-.87V4.71a1 1 0 011.49-.872l12.96 7.29a1 1 0 010 1.743z" clip-rule="evenodd"></path></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" class="w-4 cursor-pointer text-gray-6 dark:text-dark-gray-6 hover:text-gray-7 dark:hover:text-dark-gray-7"><path fill-rule="evenodd" d="M7.913 19.071l7.057-7.078-7.057-7.064a1 1 0 011.414-1.414l7.764 7.77a1 1 0 010 1.415l-7.764 7.785a1 1 0 01-1.414-1.414z" clip-rule="evenodd"></path></svg></div><div class="absolute right-0 mr-5 text-xs font-medium text-white">1 / 11</div></div></div></p>
+    <p><strong>Implementation</strong></p>
+    <iframe src="https://leetcode.com/playground/7GcrfYvi/shared" width="100%" height="500" name="user-content-7GcrfYvi" allowfullscreen="" translate="no"></iframe>
+    <p><strong>Complexity Analysis</strong></p>
+    <ul>
+    <li>
+    <p>Time complexity : <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(N)\mathcal{O}(N)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.10903em;">N</span><span class="mclose">)</span></span></span></span></span> since we visit each node up to<br>
+    two times.</p>
+    </li>
+    <li>
+    <p>Space complexity : <span class="math math-inline"><span class="katex"><span class="katex-mathml">O(1)\mathcal{O}(1)</span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathcal" style="margin-right: 0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span>.</p>
+    </li>
+    </ul></div>
+  
+</body>
+</html>

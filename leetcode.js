@@ -7,7 +7,7 @@ function callfunctions() {
   let formData = new FormData();
   formData.append('url', url);
 
-  fetch('http://localhost:5000/problem', {
+  fetch('https://manrajmann.pythonanywhere.com/problem', {
     method: 'POST',
     body: formData
   })
