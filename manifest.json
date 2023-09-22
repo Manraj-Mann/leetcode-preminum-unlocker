@@ -1,0 +1,32 @@
+{
+  "name": "Leetcode Unlocker",
+  "version": "0.0.1",
+  "author": "Manraj Singh",
+  "manifest_version": 3,
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "webNavigation",
+    "storage",
+    "unlimitedStorage"
+  ],
+  "icons": {
+    "128": "logo.png"
+  },
+  "action": {
+    "default_popup": "leetcode.html",
+    "default_icon": {
+      "128": "logo.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/*"
+      ],
+      "js": [
+        "leetcode.js"
+      ]
+    }
+  ]
+}
