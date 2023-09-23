@@ -162,7 +162,7 @@ function addTopCompanyList(company){
   let formData = new FormData();
   formData.append("company", company);
   
-  var url = "http://127.0.0.1:5000/topcompany";
+  var url = "https://manrajmann.pythonanywhere.com/topcompany";
   fetch(url , {
     method: "POST",
     body: formData,
@@ -179,10 +179,13 @@ function addTopCompanyList(company){
     .then(data => {
       // Handle the JSON data here
     
-      console.log(JSON.parse(data.data));
+      // console.log(JSON.parse(data.data));
+      var index = 1;
       JSON.parse(data.data).forEach(element => {
         
-        list += `<tr><td><a href="${element[4]}" target="_blank">${element[2]}</a></td>
+        list += `<tr>
+        <td>${index++}</td>
+        <td><a href="${element[4]}" target="_blank">${element[2]}</a></td>
         <td>${element[5]}</td>
         <td>${(element[3] * 100).toFixed(2) + "%"}</td>
         <td class="frequency-cell" style="--frequency: ${element[1]};"></td>
