@@ -7,7 +7,7 @@ function callfunctions() {
   let formData = new FormData();
   formData.append('url', url);
 
-  fetch('https://manrajmann.pythonanywhere.com/problem', {
+  fetch('https://manrajmann.pythonanywhere.com/facebook', {
     method: 'POST',
     body: formData
   })

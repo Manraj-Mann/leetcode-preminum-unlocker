@@ -1,132 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Tab Navigation</title>
+    <style>
+      /* Styles for the tabs */
+      body {
+        height: 400px;
+        width: 500px;
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+      }
 
-  <title>Simple Tab Navigation</title>
-  <style>
-    /* Styles for the tabs */
-    body {
-      height: 400px;
-      width: 500px;
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-    }
+      .tab {
+        display: none;
+        padding: 20px;
+        /* Add some padding for content */
+      }
 
-    .tab {
-      display: none;
-      padding: 20px;
-      /* Add some padding for content */
-    }
+      .tab.active {
+        display: block;
+      }
 
-    .tab.active {
-      display: block;
-    }
+      .tab-button {
+        cursor: pointer;
+        padding: 10px 20px;
+        background-color: rgb(188, 188, 188);
+        /* Blue background color */
+        border: none;
+        border-radius: 5px 5px 0 0;
+        margin-right: 5px;
+        color: white;
+        /* Text color */
+      }
 
-    .tab-button {
-      cursor: pointer;
-      padding: 10px 20px;
-      background-color: rgb(188, 188, 188);
-      /* Blue background color */
-      border: none;
-      border-radius: 5px 5px 0 0;
-      margin-right: 5px;
-      color: white;
-      /* Text color */
-    }
+      .tab-button.active {
+        background-color: #007bff;
+      }
 
-    .tab-button.active {
-      background-color: #007BFF;
-    }
+      /* Style for the search bar and button */
+      .search-container {
+        margin-top: 20px;
+      }
 
-    /* Style for the search bar and button */
-    .search-container {
-      margin-top: 20px;
-    }
+      .search-input {
+        padding: 5px;
+        width: 70%;
+        border: 1px solid #ccc;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
 
-    .search-input {
-      padding: 5px;
-      width: 70%;
-      border: 1px solid #ccc;
-      border-radius: 5px 0 0 5px;
-      outline: none;
-    }
+      .search-button {
+        padding: 6px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+      }
 
-    .search-button {
-      padding: 6px 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 0 5px 5px 0;
-      cursor: pointer;
-    }
+      /* Style for company grid */
+      .company-grid.active {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
 
-    /* Style for company grid */
-    .company-grid.active {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
+      /* Style for the companies tag container */
+      .companies-tag {
+        padding: 5px;
+        font-weight: bold;
+        margin: 5px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+      }
 
-    /* Style for the companies tag container */
-    .companies-tag {
-      padding: 5px;
-      font-weight: bold;
-      margin: 5px;
-      border-radius: 5px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-    }
+      /* Style for the company count */
+      .company-count {
+        display: inline-block;
+        background-color: #38b41f;
+        color: #fff;
+        padding: 7px 10px;
+        border-radius: 7px;
+        margin: 2px;
+      }
+    </style>
+    <link rel="stylesheet" href="leetcode.css" />
+  </head>
 
-    /* Style for the company count */
-    .company-count {
-      display: inline-block;
-      background-color: #38b41f;
-      color: #fff;
-      padding: 7px 10px;
-      border-radius: 7px;
-      margin: 2px;
-    }
-  </style>
-</head>
-
-<body>
-  <div>
-    <!-- Tab buttons -->
-    <button class="tab-button active" id="HomeTab">Home</button>
-    <button class="tab-button" id="CompaniesTab">Companies</button>
-    <button class="tab-button" id="EditorialTab">Editorial</button>
-  </div>
-  <div>
-    <!-- Tab content -->
-    <div class="tab" id="Home">
-      <h2>Home Page</h2>
-      <!-- Search bar and button -->
-      <div class="search-container">
-        <input type="text" class="search-input" id="searchInput" placeholder="Search..." />
-        <button class="search-button" id="searchButton">Search</button>
+  <body>
+    <div>
+      <!-- Tab buttons -->
+      <button class="tab-button active" id="HomeTab">Home</button>
+      <button class="tab-button" id="CompaniesTab">Companies</button>
+      <button class="tab-button" id="EditorialTab">Editorial</button>
+      <button class="tab-button" id="TopCompaniesTab">Top Companies</button>
+    </div>
+    <div>
+      <!-- Tab content -->
+      <div class="tab" id="Home">
+        <h2>Home Page</h2>
+        <!-- Search bar and button -->
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-input"
+            id="searchInput"
+            placeholder="Search..."
+          />
+          <button class="search-button" id="searchButton">Search</button>
+        </div>
+        <p id="search-status">
+          Add the link to search bar and wait for result ....
+        </p>
       </div>
-      <p id="search-status">
-        Add the link to search bar and wait for result ....
-      </p>
-    </div>
-    <div class="tab company-grid" id="Companies">
-      <h2>Companies Page</h2>
-      <p>Welcome to the Companies page.</p>
-    </div>
-    <div class="tab" id="Editorial">
-      <h2>Editorial Page</h2>
-      <p>Explore our editorial content here.</p>
-    </div>
-  </div>
+      <div class="tab company-grid" id="Companies">
+        <h2>Companies Page</h2>
+        <p>Welcome to the Companies page.</p>
+      </div>
+      <div class="tab" id="Editorial">
+        <h2>Editorial Page</h2>
+        <p>Explore our editorial content here.</p>
+      </div>
+      <div class="tab" id="TopCompanies">
+        <h2>Top Companies Questions</h2>
+        <p>Explore our companies content here.</p>
+        <ul>
+          <li><button id="TopFacebook">Top Facebook Questions</button></li>
+          <li><button>Top Google Questions</button></li>
+          <li><button>Top Amazon Questions</button></li>
+          <li><button>Top Microsoft Questions</button></li>
+        </ul>
 
-  <script src="script.js"></script>
+        <div class="companies-container">
+          <thead>
+            <tr>
+              <th data-sort="text">Problem Name</th>
+              <th data-sort="text">Difficulty</th>
+              <th data-sort="number">Acceptance</th>
+              <th data-sort="number">Frequency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr></tr>
+          </tbody>
+        </div>
+      </div>
+    </div>
 
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>

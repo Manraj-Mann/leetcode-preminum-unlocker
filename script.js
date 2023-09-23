@@ -129,3 +129,14 @@ function embedKaTeX() {
     document.head.appendChild(editorialCSS);
   }
 }
+
+
+// Get the button element by its id
+var button = document.getElementById("TopFacebook");
+// var companiesContainer = document.getElementById("Companies");
+// Add a click event listener to the button
+button.addEventListener("click", function() {
+    // Your action to perform when the button is clicked goes here
+
+    alert("Button clicked! You can perform your action here.");
+});

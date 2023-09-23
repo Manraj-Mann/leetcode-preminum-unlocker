@@ -1,0 +1,49 @@
+.companies-container{
+
+    visibility: hidden;
+}
+
+/* Style the container */
+.companies-container {
+    width: 100%;
+    margin: 20px;
+  }
+  
+  /* Style the table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+  }
+  
+  /* Style the table headers */
+  th {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  /* Style the table header on hover */
+  th:hover {
+    background-color: #555;
+  }
+  
+  /* Style the table cells */
+  td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Style odd rows with a light background */
+  tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style table rows on hover */
+  tbody tr:hover {
+    background-color: #ddd;
+  }
+  
