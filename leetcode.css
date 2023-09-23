@@ -1,11 +1,13 @@
 .companies-container{
 
     visibility: hidden;
+    display: none;
 }
 
 /* Style the container */
 .companies-container {
-    width: 100%;
+  
+   align-items: center;
     margin: 20px;
   }
   
@@ -47,3 +49,52 @@
     background-color: #ddd;
   }
   
+  /* Style the list */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style list items (li) */
+li {
+  margin: 10px 0;
+}
+
+/* Style the buttons inside list items */
+li button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Style button hover state */
+li button:hover {
+  background-color: #0056b3;
+}
+
+/* Add margin to the buttons inside list items if needed */
+li button {
+  margin-right: 10px;
+}
+
+
+  .frequency-cell {
+    height: 5px; /* Set the height of the frequency bar */
+    /* background-color: #dcdee1; Default background color */
+    --frequency: 0; /* Default value for --frequency */
+}
+
+.frequency-cell::before {
+    content: "";
+    display: block;
+    height: 30%;
+    width: calc(var(--frequency, 0) * 100%); /* Set the width based on --frequency property as a percentage */
+    background-color: #4caf50; /* Bar color */
+}
+

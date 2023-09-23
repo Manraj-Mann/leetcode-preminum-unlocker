@@ -114,11 +114,90 @@ function embedKaTeX() {
 
 
 // Get the button element by its id
-var button = document.getElementById("TopFacebook");
-// var companiesContainer = document.getElementById("Companies");
-// Add a click event listener to the button
-button.addEventListener("click", function() {
-    // Your action to perform when the button is clicked goes here
+var facebookButton = document.getElementById("TopFacebook");
+var googleButton = document.getElementById("TopGoogle");
+var amazonButton = document.getElementById("TopAmazon");
+var microsoftButton = document.getElementById("TopMicrosoft");
 
-    alert("Button clicked! You can perform your action here.");
+// Get the companiesContainer element by its class name
+var companiesContainer = document.getElementById("companies-container");
+var compnaiesList = document.getElementById("companies-list");
+var companiesProblems = document.getElementById("CompaniesList");
+
+// Add a click event listener to the button
+facebookButton.addEventListener("click", function () {
+  
+  addTopCompanyList("facebook")
+  // alert("Button clicked! You can perform your action here.");
 });
+// Add a click event listener to the button
+googleButton.addEventListener("click", function () {
+  
+  addTopCompanyList("google")
+  // alert("Button clicked! You can perform your action here.");
+});
+amazonButton.addEventListener("click", function () {
+  
+  addTopCompanyList("amazon")
+  // alert("Button clicked! You can perform your action here.");
+});
+microsoftButton.addEventListener("click", function () {
+  
+  addTopCompanyList("microsoft")
+  // alert("Button clicked! You can perform your action here.");
+});
+
+
+
+function addTopCompanyList(company){
+
+  // Your action to perform when the button is clicked goes here
+  companiesContainer.style.visibility = "visible";
+  companiesContainer.style.display = "block";
+  compnaiesList.style.visibility = "hidden";
+  compnaiesList.style.display = "none";
+
+  let list = "";
+
+  let formData = new FormData();
+  formData.append("company", company);
+  
+  var url = "http://127.0.0.1:5000/topcompany";
+  fetch(url , {
+    method: "POST",
+    body: formData,
+  })
+    .then(response => {
+      // Check if the response status is OK (200)
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      // Parse the JSON response
+      return response.json();
+    })
+    .then(data => {
+      // Handle the JSON data here
+    
+      console.log(JSON.parse(data.data));
+      JSON.parse(data.data).forEach(element => {
+        
+        list += `<tr><td><a href="${element[4]}" target="_blank">${element[2]}</a></td>
+        <td>${element[5]}</td>
+        <td>${(element[3] * 100).toFixed(2) + "%"}</td>
+        <td class="frequency-cell" style="--frequency: ${element[1]};"></td>
+        </tr>`;
+        
+      });
+
+      companiesProblems.innerHTML = list;
+
+      
+    })
+    .catch(error => {
+      // Handle any errors that occurred during the fetch
+      console.error('Fetch Error:', error);
+    });
+
+
+}

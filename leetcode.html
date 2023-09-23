@@ -130,27 +130,38 @@
         <p>Explore our editorial content here.</p>
       </div>
       <div class="tab" id="TopCompanies">
-        <h2>Top Companies Questions</h2>
-        <p>Explore our companies content here.</p>
-        <ul>
-          <li><button id="TopFacebook">Top Facebook Questions</button></li>
-          <li><button>Top Google Questions</button></li>
-          <li><button>Top Amazon Questions</button></li>
-          <li><button>Top Microsoft Questions</button></li>
-        </ul>
+        <div id="companies-list">
+          <h2>Top Companies Questions</h2>
+          <p>Explore our companies content here.</p>
+          <ul>
+            <li><button id="TopFacebook">Top Facebook Questions</button></li>
+            <li><button id="TopGoogle">Top Google Questions</button></li>
+            <li><button id="TopAmazon">Top Amazon Questions</button></li>
+            <li><button id="TopMicrosoft">Top Microsoft Questions</button></li>
+          </ul>
+        </div>
 
-        <div class="companies-container">
-          <thead>
-            <tr>
-              <th data-sort="text">Problem Name</th>
-              <th data-sort="text">Difficulty</th>
-              <th data-sort="number">Acceptance</th>
-              <th data-sort="number">Frequency</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr></tr>
-          </tbody>
+        <div class="companies-container" id="companies-container">
+          <div>
+            <a href=""> Back</a>
+            <a href="" target="_blank">Open on new page</a>
+          </div>
+          <br>
+          <table>
+            <thead>
+                <tr>
+                    <th >Problem Name</th>
+                    <th data-sort="text">Difficulty</th>
+                    <th data-sort="number">Acceptance</th>
+                    <th data-sort="number">Frequency</th>
+                </tr>
+            </thead>
+            <tbody id="CompaniesList">
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+        
+          
         </div>
       </div>
     </div>
