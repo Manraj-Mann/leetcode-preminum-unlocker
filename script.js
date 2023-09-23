@@ -88,32 +88,14 @@ function maketags(data) {
   return tags;
 }
 
-// // Function to embed KaTeX tags
-// function embedKaTeX() {
-//   const katexStylesheet = document.createElement("link");
-//   katexStylesheet.rel = "stylesheet";
-//   katexStylesheet.href =
-//     "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
-
-//   const katexScript = document.createElement("script");
-//   katexScript.src =
-//     "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
-
-//   // Append KaTeX tags to the editorialTab
-//   editorialTab.appendChild(katexStylesheet);
-//   editorialTab.appendChild(katexScript);
-// }
-
 // Function to embed KaTeX tags
 function embedKaTeX() {
   const katexStylesheet = document.createElement("link");
   katexStylesheet.rel = "stylesheet";
-  katexStylesheet.href =
-    "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
+  katexStylesheet.href = "assets/katex/katex.min.css";
 
   const katexScript = document.createElement("script");
-  katexScript.src =
-    "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
+  katexScript.src = "assets/katex/katex.min.js";
 
   // Append KaTeX tags to the editorialTab
   editorialTab.appendChild(katexStylesheet);
