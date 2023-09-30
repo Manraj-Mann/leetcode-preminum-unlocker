@@ -1,3 +1,7 @@
+# Hacktoberfest 2023 Participants 
+
+Please refer to the [CONTRIBUTING.MD](./CONTRIBUTING.md)
+
 # Leetcode Premium Unlocker
 
 ## How to use ? 
